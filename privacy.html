@@ -5,16 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Privacy Policy: SteadyHand</title>
   <meta name="robots" content="all" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = { theme: { extend: {
-      colors: { ink: '#0e1526', blue: '#1d44d8', panel: '#f5f7fb' },
-      fontFamily: { sans: ['Inter','system-ui','sans-serif'], display: ['Fraunces','Georgia','serif'] },
-    } } };
-  </script>
+  <link rel="stylesheet" href="assets/fonts.css" />
+  <link rel="stylesheet" href="assets/styles.css" />
   <style>
     body { -webkit-font-smoothing: antialiased; }
     .rule { border-color: rgba(14,21,38,.12); }
@@ -82,7 +74,7 @@
       <h3>Information collected automatically</h3>
       <ul>
         <li><strong>Server and security logs.</strong> Our hosting and content delivery providers (for example GitHub Pages or Cloudflare) automatically process limited technical data such as your IP address, browser type, referring page, and the date and time of your request. This is standard for any website and is used to deliver the pages and keep the Site secure.</li>
-        <li><strong>Third-party resources.</strong> To display correctly, the Site loads font files (Google Fonts) and a styling library (Tailwind via a CDN) from third-party servers. When your browser requests these files, your IP address is necessarily transmitted to those providers. We do not use these for tracking.</li>
+        <li><strong>First-party assets.</strong> Fonts and stylesheets are self-hosted and served from our own domain, so the Site makes no third-party font or CDN requests to load its design.</li>
       </ul>
       <p>
         <strong>Analytics, only with your consent.</strong> If you choose &ldquo;Accept&rdquo; on the cookie banner,
@@ -111,7 +103,7 @@
         <li><strong>Hosting / CDN</strong> (for example GitHub, Inc. or Cloudflare, Inc.): serving the Site and security logging.</li>
         <li><strong>Scheduling</strong> (Calendly LLC): demo bookings, where you use that option.</li>
         <li><strong>Email</strong> (our email provider): receiving and replying to your messages.</li>
-        <li><strong>Font and library delivery</strong> (Google LLC for fonts; the Tailwind CDN provider): loading page assets.</li>
+
         <li><strong>Analytics</strong> (Plausible Analytics): privacy-friendly, cookieless visit statistics, loaded only with your consent.</li>
       </ul>
       <p>
@@ -203,6 +195,6 @@
       <p class="mt-6 text-[12.5px] text-white/40">&copy; <span id="year"></span> SteadyHand</p>
     </div>
   </footer>
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script src="assets/app.js" defer></script>
 </body>
 </html>

@@ -11,25 +11,8 @@
   <meta property="og:description" content="Keep first deposits alive past day eleven. Read-only, white-label, free 30-day pilot measured on your own book." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="images/hero.jpeg" />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: { ink: '#0e1526', blue: '#1d44d8', panel: '#f5f7fb' },
-          fontFamily: {
-            sans: ['Inter', 'system-ui', 'sans-serif'],
-            display: ['Fraunces', 'Georgia', 'serif'],
-          },
-        },
-      },
-    };
-  </script>
+  <link rel="stylesheet" href="assets/fonts.css" />
+  <link rel="stylesheet" href="assets/styles.css" />
   <style>
     body { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
     .display { font-optical-sizing: auto; }
@@ -503,38 +486,6 @@
       <p class="mt-5 text-[12.5px] text-white/40">&copy; <span id="year"></span> SteadyHand</p>
     </div>
   </footer>
-
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // reveal on scroll
-    const io = new IntersectionObserver((entries) => { entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); }, { threshold: 0.12 });
-    document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
-
-    // ROI calculator
-    (function(){
-      const EARLY_CHURN = 0.40; // assumption: share of first deposits that blow up before covering CAC
-      const ftd = document.getElementById('ftd');
-      const cac = document.getElementById('cac');
-      const uplift = document.getElementById('uplift');
-      const upliftVal = document.getElementById('upliftVal');
-      const savedEl = document.getElementById('saved');
-      const recoveredEl = document.getElementById('recovered');
-      const money = new Intl.NumberFormat('en-US', { style:'currency', currency:'USD', maximumFractionDigits:0 });
-      function calc(){
-        const n = Math.max(0, parseFloat(ftd.value) || 0);
-        const c = Math.max(0, parseFloat(cac.value) || 0);
-        const u = (parseFloat(uplift.value) || 0) / 100;
-        upliftVal.textContent = Math.round(u*100) + '%';
-        const savedPerMonth = n * EARLY_CHURN * u;
-        const recoveredPerYear = savedPerMonth * c * 12;
-        savedEl.textContent = Math.round(savedPerMonth).toLocaleString('en-US');
-        recoveredEl.textContent = money.format(Math.round(recoveredPerYear));
-      }
-      [ftd, cac, uplift].forEach(el => { el.addEventListener('input', calc); });
-      calc();
-    })();
-  </script>
   <!-- ============================ COOKIE CONSENT ============================ -->
   <div id="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie consent" class="fixed inset-x-0 bottom-0 z-[100] hidden">
     <div class="max-w-4xl mx-auto m-3 sm:m-4 bg-white border rule rounded-lg shadow-2xl shadow-ink/20 p-5 sm:p-6 sm:flex sm:items-center sm:gap-6">
@@ -547,58 +498,6 @@
       </div>
     </div>
   </div>
-
-  <script>
-    (function(){
-      var KEY = 'sh-consent';
-      var banner = document.getElementById('cookie-banner');
-      function loadAnalytics(){
-        if (window.__shAnalytics) return; window.__shAnalytics = true;
-        // Plausible: cookieless, privacy-friendly. Loads only after Accept.
-        // Requires a Plausible account with the domain 'steadyhand.app' added.
-        var s = document.createElement('script');
-        s.defer = true;
-        s.setAttribute('data-domain', 'steadyhand.app');
-        s.src = 'https://plausible.io/js/script.js';
-        document.head.appendChild(s);
-      }
-      function show(){ banner.classList.remove('hidden'); }
-      function hide(){ banner.classList.add('hidden'); }
-      function save(v){ try { localStorage.setItem(KEY, v); } catch(e){} hide(); if (v === 'accepted') loadAnalytics(); }
-      var saved = null; try { saved = localStorage.getItem(KEY); } catch(e){}
-      if (saved === 'accepted') { loadAnalytics(); }
-      else if (saved !== 'rejected') { show(); }
-      document.getElementById('cookie-accept').addEventListener('click', function(){ save('accepted'); });
-      document.getElementById('cookie-reject').addEventListener('click', function(){ save('rejected'); });
-      document.querySelectorAll('[data-cookie-settings]').forEach(function(el){ el.addEventListener('click', function(e){ e.preventDefault(); show(); }); });
-    })();
-  </script>
-  <script>
-    (function(){
-      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      function countUp(el){
-        var to = parseFloat(el.getAttribute('data-countup'));
-        var suf = el.getAttribute('data-suffix') || '';
-        if (isNaN(to)) return;
-        if (reduce){ el.textContent = to + suf; return; }
-        var dur = 1100, t0 = null;
-        function step(ts){ if(!t0) t0 = ts; var p = Math.min((ts-t0)/dur,1); var e = 1-Math.pow(1-p,3); el.textContent = Math.round(to*e) + suf; if(p<1) requestAnimationFrame(step); else el.textContent = to + suf; }
-        requestAnimationFrame(step);
-      }
-      var cObs = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ countUp(e.target); cObs.unobserve(e.target); } }); }, { threshold: 0.6 });
-      document.querySelectorAll('.countup').forEach(function(el){ cObs.observe(el); });
-
-      if (!reduce){
-        document.querySelectorAll('.draw-line').forEach(function(line){
-          try {
-            var len = line.getTotalLength();
-            line.style.strokeDasharray = len; line.style.strokeDashoffset = len;
-            var lObs = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ line.style.transition='stroke-dashoffset 1.4s ease'; line.style.strokeDashoffset='0'; lObs.unobserve(e.target); } }); }, { threshold: 0.4 });
-            lObs.observe(line);
-          } catch(err){}
-        });
-      }
-    })();
-  </script>
+  <script src="assets/app.js" defer></script>
 </body>
 </html>

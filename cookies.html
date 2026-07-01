@@ -5,16 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cookie Policy: SteadyHand</title>
   <meta name="robots" content="all" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = { theme: { extend: {
-      colors: { ink: '#0e1526', blue: '#1d44d8', panel: '#f5f7fb' },
-      fontFamily: { sans: ['Inter','system-ui','sans-serif'], display: ['Fraunces','Georgia','serif'] },
-    } } };
-  </script>
+  <link rel="stylesheet" href="assets/fonts.css" />
+  <link rel="stylesheet" href="assets/styles.css" />
   <style>
     body { -webkit-font-smoothing: antialiased; }
     .rule { border-color: rgba(14,21,38,.12); }
@@ -69,16 +61,16 @@
           <tr><th>Provider</th><th>Why it loads</th><th>What it can involve</th></tr>
         </thead>
         <tbody>
-          <tr><td>Google Fonts</td><td>Web fonts used across the Site</td><td>Your IP address is sent to Google to deliver the font files. Google states it does not use this to identify you for ads.</td></tr>
-          <tr><td>Tailwind CDN</td><td>Page styling</td><td>Your IP address is sent to the CDN to deliver the stylesheet.</td></tr>
+
+
           <tr><td>Plausible Analytics</td><td>Aggregate visit counts, only after you accept</td><td>Cookieless. Counts page views without cookies, personal data, or profiles. Loads only with your consent.</td></tr>
           <tr><td>Hosting / CDN (e.g. GitHub or Cloudflare)</td><td>Serving and securing the Site</td><td>Standard server logs and, in some cases, an essential security cookie set by the provider.</td></tr>
           <tr><td>Calendly</td><td>Only if you open the demo booking</td><td>Calendly may set its own cookies on its booking page. See Calendly&rsquo;s cookie notice.</td></tr>
         </tbody>
       </table>
       <p>
-        If you would prefer to avoid the font and styling requests entirely, we can self-host those assets so nothing
-        loads from third parties. Contact us if that matters to you.
+        Our fonts and stylesheets are self-hosted and served from our own domain, so no third-party font or styling
+        requests are made from your browser.
       </p>
 
       <h2>3. How to control cookies</h2>
@@ -112,6 +104,6 @@
       <p class="mt-6 text-[12.5px] text-white/40">&copy; <span id="year"></span> SteadyHand</p>
     </div>
   </footer>
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script src="assets/app.js" defer></script>
 </body>
 </html>

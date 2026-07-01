@@ -1,0 +1,9 @@
+{
+  "name": "steadyhand-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static marketing site for SteadyHand (self-hosted Tailwind + fonts).",
+  "scripts": {
+    "build:css": "npx -y tailwindcss@3 -c tailwind.config.js -i src/input.css -o assets/styles.css --minify"
+  }
+}
